@@ -1,0 +1,11 @@
+
+
+Sat Nov 18 14:35:20 BRST 2017 >>> Clase: SQLite // Aviso: Notificacao
+{
+
+Texto:
+
+Banco de Dados nao existe, Primeiro uso do Sistema, um banco de dados sera criado.
+
+}
+--------------------------------------------------------------------------

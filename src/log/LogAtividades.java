@@ -3,7 +3,9 @@ package log;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class LogAtividades {
 	
@@ -14,7 +16,7 @@ public class LogAtividades {
 			
 			GregorianCalendar dataHora = new GregorianCalendar();
 			
-			FileWriter arquivoLog = new FileWriter("log.txt", true);
+			FileWriter arquivoLog = new FileWriter("log\\"+dataHora.get(Calendar.DAY_OF_MONTH)+"-"+(dataHora.get(Calendar.MONTH)+1)+"-"+dataHora.get(Calendar.YEAR)+"-log.txt", true);
 			PrintWriter gravar = new PrintWriter(arquivoLog);
 			
 			gravar.printf(
