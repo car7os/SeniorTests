@@ -1,11 +1,22 @@
 
 
-Sat Nov 18 14:35:20 BRST 2017 >>> Clase: SQLite // Aviso: Notificacao
+Sat Nov 18 16:25:10 BRST 2017 >>> Clase: SQLite // Aviso: Notificacao
 {
 
 Texto:
 
 Banco de Dados nao existe, Primeiro uso do Sistema, um banco de dados sera criado.
+
+}
+--------------------------------------------------------------------------
+
+
+Sat Nov 18 16:25:11 BRST 2017 >>> Clase: SQLite // Aviso: Resultado do Query
+{
+
+Texto:
+
+query does not return ResultSet
 
 }
 --------------------------------------------------------------------------

@@ -3,6 +3,8 @@ package config;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import log.LogAtividades;
 
@@ -25,7 +27,7 @@ public class SQLite {
 		
 		
 		conexao = null;
-		File arquivo = new File(this.arquivo);
+		File arquivo = new File(this.pasta+"\\"+this.arquivo);
 		LogAtividades log = new LogAtividades();
 		
 		Boolean flag = false;
@@ -46,8 +48,23 @@ public class SQLite {
 			log.setAtividades("SQLite", "ERRO", e.getMessage());
 		}
 
+
+		Statement enviar;
+		ResultSet resultado;
+
 		
+		if(flag!=true) {
 		
+		try {
+			enviar = conexao.createStatement();
+			resultado = enviar.executeQuery("CREATE TABLE testando(int id)");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.setAtividades("SQLite", "Resultado do Query", e.getMessage());
+		}
+		
+		}
 		
 		
 		
