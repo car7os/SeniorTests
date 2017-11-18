@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import log.LogAtividades;
@@ -59,7 +60,7 @@ public class SQLite {
 			enviar = conexao.createStatement();
 			resultado = enviar.executeQuery("CREATE TABLE testando(int id)");
 			
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.setAtividades("SQLite", "Resultado do Query", e.getMessage());
 		}
@@ -67,7 +68,12 @@ public class SQLite {
 		}
 		
 		
-		
+		try {
+			conexao.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.setAtividades("SQLite", "Resultado do SQLite", e.getMessage());
+		}
 
 		
 		
