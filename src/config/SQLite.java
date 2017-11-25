@@ -21,26 +21,36 @@ public class SQLite {
 	
 	
 	public SQLite(){
+
+
+				this.driveSQLite = "org.sqlite.JDBC";
+				this.pasta = "DataBase";
+				this.arquivo = "tests.db";
 		
-		this.driveSQLite = "org.sqlite.JDBC";
-		this.pasta = "DataBase";
-		this.arquivo = "tests.db";
+				conexao = null;
+
+				File pastas;
 		
+				File arquivo;
+				LogAtividades log = new LogAtividades();
+
 		
-		conexao = null;
-		File arquivo = new File(this.pasta+"\\"+this.arquivo);
-		LogAtividades log = new LogAtividades();
-		
-		Boolean flag = false;
-		
-		if (arquivo.exists()) {
-			flag = true;
-		}else {
-			log.setAtividades("SQLite", "Notificacao", "Banco de Dados nao existe, Primeiro uso do Sistema, um banco de dados sera criado.");
-		}
-		
-		try {
+				Boolean flag = false;
 			
+				try {
+			
+				pastas = new File(this.pasta);
+				pastas.mkdirs();
+		
+				arquivo = new File(this.pasta+"\\"+this.arquivo);
+		
+				if (arquivo.exists()) {
+					flag = true;
+				}else {
+					log.setAtividades("SQLite", "Notificacao", "Banco de Dados nao existe, Primeiro uso do Sistema, um banco de dados sera criado.");
+				}
+		
+					
 			Class.forName(this.driveSQLite);
 			conexao = DriverManager.getConnection("jdbc:sqlite:"+this.pasta+"\\"+this.arquivo);
 			
