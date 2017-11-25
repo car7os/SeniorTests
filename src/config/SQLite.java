@@ -50,16 +50,20 @@ public class SQLite {
 		}
 
 
-		Statement enviar;
-		ResultSet resultado;
 
 		
 		if(flag!=true) {
 		
 		try {
+
+			Statement enviar;
+			ResultSet resultado;
+
 			enviar = conexao.createStatement();
 			resultado = enviar.executeQuery("CREATE TABLE testando(int id)");
-			
+
+			conexao.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.setAtividades("SQLite", "Resultado do Query", e.getMessage());
@@ -67,13 +71,6 @@ public class SQLite {
 		
 		}
 		
-		
-		try {
-			conexao.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			log.setAtividades("SQLite", "Resultado do SQLite", e.getMessage());
-		}
 
 		
 		

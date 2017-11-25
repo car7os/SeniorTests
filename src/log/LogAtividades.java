@@ -19,11 +19,9 @@ public class LogAtividades {
 			FileWriter arquivoLog = new FileWriter("log\\"+dataHora.get(Calendar.DAY_OF_MONTH)+"-"+(dataHora.get(Calendar.MONTH)+1)+"-"+dataHora.get(Calendar.YEAR)+"-log.txt", true);
 			PrintWriter gravar = new PrintWriter(arquivoLog);
 			
-			gravar.printf(
-					  "\n\n%s >>> Clase: %s // Aviso: %s\n{\n"
-					+ "\nTexto:\n\n"
+			gravar.printf("\n[%s] (Clase: %s; Aviso: %s) { >>> "
 					+ "%s"
-					+ "\n\n}\n--------------------------------------------------------------------------\n"
+					+ " <<< }\n"
 					, dataHora.getTime(), classe, aviso, texto);
 
 			arquivoLog.close();
