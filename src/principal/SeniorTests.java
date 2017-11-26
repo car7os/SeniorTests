@@ -22,7 +22,7 @@ public class SeniorTests {
 		
 		site.clicarLink("CBN - Home");
 
-		
+		site.fecharTodasAbas();
 		
 		
 		
