@@ -16,7 +16,7 @@ public class SeniorTests {
 		
 		site.apagarCampoTexto("name", "q");
 		
-		site.inserirTextoComEnter("name", "q", "microsoft xbox");
+		site.inserirTextoComSubmit("name", "q", "microsoft xbox");
 		
 		
 		

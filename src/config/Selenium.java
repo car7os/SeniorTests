@@ -72,7 +72,7 @@ public class Selenium {
 		driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']")).click();
 	}
 
-	public void inserirTextoComEnter(String campo, String valorCampo, String texto) {
+	public void inserirTextoComSubmit(String campo, String valorCampo, String texto) {
 		areaTexto = driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']"));
 		areaTexto.sendKeys(texto);
 		areaTexto.submit();
