@@ -21,24 +21,9 @@ public class SeniorTests {
 		site.inserirTextoComSubmit("name", "q", "Radio CBN");
 		
 		site.clicarLink("CBN - Home");
-		
-		site.fecharAbaAtual();;
-		
-		site.fecharTodasAbas();
-		
-		site.abrirNavegador();
-		
-		site.abrirURL("http://google.com");
-		
-		
-		
-		site.fecharProcesso("chrome.exe");
-		
-		site.fecharTudo();
-		
-		
-		
 
+		
+		
 		
 		
 	}

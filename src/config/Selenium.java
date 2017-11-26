@@ -17,6 +17,8 @@ public class Selenium {
 	private static String drive;
 	private static WebDriver driver; 
 	
+	private static String baseURL;
+	
 	private static WebElement areaTexto;
 	
 	public void abrirNavegador() {
@@ -61,7 +63,9 @@ public class Selenium {
 	}
 	
 	public void abrirURL(String url) {
-		driver.get(url);
+		
+		this.baseURL = url;
+		driver.get(this.baseURL);
 	}
 	
 	public void inserirTexto(String campo, String valorCampo, String texto) {
@@ -79,7 +83,7 @@ public class Selenium {
 		areaTexto.sendKeys(texto);
 		areaTexto.submit();
 	}
-
+	
 	public void apagarCampoTexto(String campo, String valorCampo) {
 		areaTexto = driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']"));
 		areaTexto.clear();
