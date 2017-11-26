@@ -68,10 +68,10 @@ public class Selenium {
 	}
 	
 	
-	public void clicar(String campo, String valorCampo) {
-		driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']")).click();
+	public void clicarLink(String texto) {
+		driver.findElement(By.partialLinkText(texto)).click();
 	}
-
+	
 	public void inserirTextoComSubmit(String campo, String valorCampo, String texto) {
 		areaTexto = driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']"));
 		areaTexto.sendKeys(texto);

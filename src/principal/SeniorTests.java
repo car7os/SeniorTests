@@ -16,8 +16,11 @@ public class SeniorTests {
 		
 		site.apagarCampoTexto("name", "q");
 		
-		site.inserirTextoComSubmit("name", "q", "microsoft xbox");
+		site.inserirTextoComSubmit("name", "q", "Radio CBN");
 		
+		site.clicarLink("Radio CBN");
+		
+
 		
 		
 	}
