@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import log.LogAtividades;
+
 public class Selenium {
 	
 	private static String drive;
@@ -17,7 +19,7 @@ public class Selenium {
 	
 	private static WebElement areaTexto;
 	
-	public Selenium() {
+	public void abrirNavegador() {
 		getDrive();
 		
 		System.setProperty("webdriver.chrome.driver", drive);
@@ -82,5 +84,32 @@ public class Selenium {
 		areaTexto = driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']"));
 		areaTexto.clear();
 	}
+	
+	public void fecharAbaAtual() {
+		driver.switchTo().window(driver.getWindowHandle());
+		driver.close();
+	}
+	
+	public void fecharTodasAbas() {
+		driver.quit();
+	}
+	
+	public void fecharProcesso(String processo){
+	
+		try {
+			for(int i = 0; i>= 100; i++) {
+
+				Runtime.getRuntime().exec("taskkill /f /im "+processo+" /t");
+			}
+		}catch(Exception e) {
+			
+			LogAtividades log = new LogAtividades();
+			
+			log.setAtividades("Config Selenium","ERRO",e.getMessage());
+		}
+	}
+	
+
+	
 
 }
