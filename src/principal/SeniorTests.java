@@ -8,8 +8,15 @@ public class SeniorTests {
 	public static void main (String args[]) {
 		
 		SQLite DataBase = new SQLite();
-		Selenium Automatizar = new Selenium();
+		Selenium site = new Selenium();
 		
+		site.abrirURL("http://www.google.com.br");
+		
+		site.inserirTexto("name","q", "microsoft");
+		
+		site.apagarCampoTexto("name", "q");
+		
+		site.inserirTextoComEnter("name", "q", "microsoft xbox");
 		
 		
 		

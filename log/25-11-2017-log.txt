@@ -1,0 +1,4 @@
+
+[Sat Nov 25 21:24:01 BRST 2017] (Clase: SQLite; Aviso: Notificacao) { >>> Banco de Dados nao existe, Primeiro uso do Sistema, um banco de dados sera criado. <<< }
+
+[Sat Nov 25 21:24:02 BRST 2017] (Clase: SQLite; Aviso: Resultado do Query) { >>> query does not return ResultSet <<< }
