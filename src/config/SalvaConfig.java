@@ -24,6 +24,14 @@ public class SalvaConfig {
 	private static String ambienteTrabalho;
 	
 	private static final String pastaCenarios = "Cenarios";
+	private static String desktop;
+	
+	private static File pastas;
+	private static File arquivos;
+	private static File isArquivo;
+	private static File pCenarios;
+	
+	private static boolean flag;
 	
 	
 	
@@ -35,32 +43,17 @@ public class SalvaConfig {
 		
 				conexao = null;
 
-				File pastas;
-		
-				File arquivo;
-				File isArquivo;
-				
-				File pCenarios;
-		
-				Boolean flag = false;
+				flag = false;
 
-				arquivo = new File(this.pasta+"\\"+this.arquivo);
+				arquivos = new File(this.pasta+"\\"+this.arquivo);
 				isArquivo = new File(this.pasta+"\\"+this.arquivo);
 			
 				try {
 			
 				pastas = new File(this.pasta);
 				pastas.mkdirs();
-				
-				pCenarios = new File(ambienteTrabalho+this.pastaCenarios);
-				if(!pCenarios.exists()) {
-				pCenarios.mkdirs();
-				}else {
-					JOptionPane.showMessageDialog(null, "Foi constatado que já possui a pasta Cenarios!\nOs arquivos serão preservados e não havrá modificações.\nOs Cenários poderão ser utilizados normalmente.", "Os Cenários Já Existem", JOptionPane.INFORMATION_MESSAGE);
-				}
 		
-		
-				if (arquivo.exists()) {
+				if (arquivos.exists()) {
 					flag = true;
 				}
 		
@@ -68,6 +61,14 @@ public class SalvaConfig {
 			Class.forName(this.driveSQLite);
 			conexao = DriverManager.getConnection("jdbc:sqlite:"+this.pasta+"\\"+this.arquivo);
 			
+			desktop = ambienteTrabalho+this.pastaCenarios;
+			pCenarios = new File(desktop);
+			if(!pCenarios.exists()) {
+			pCenarios.mkdirs();
+			}else {
+				JOptionPane.showMessageDialog(null, "Foi constatado que já possui a pasta Cenarios!\nOs arquivos serão preservados e não havrá modificações.\nOs Cenários poderão ser utilizados normalmente.", "Os Cenários Já Existem", JOptionPane.INFORMATION_MESSAGE);
+			}
+
 			
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null, e,"ERRO", JOptionPane.ERROR_MESSAGE);
@@ -88,9 +89,6 @@ public class SalvaConfig {
 
 			conexao.close();
 			
-			
-			
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println(e);
