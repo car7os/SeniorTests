@@ -11,7 +11,22 @@ public class Selenium {
 	private static int confirma;
 	
 	
+	
 	public Selenium() {
+		
+		SQLite config = new SQLite();
+		
+		if (!config.getConfig()) {
+
+			configurarSelenium();
+		
+		}
+		
+	}
+	
+	
+	
+	public void configurarSelenium() {
 		
 		this.browserDriver = null;
 		this.driver = null;
@@ -41,11 +56,16 @@ public class Selenium {
 			System.exit(0);
 		}
 		
-		this.confirma = JOptionPane.showConfirmDialog(null, "BrowserDriver: "+this.browserDriver+"\n\nDriver: "+this.driver+"\n\nDeseja continuar com esta configuração? Caso seja necessário configurar novamente, delete a pasta 'config'.", "Confimação das Configurações Selenium", JOptionPane.OK_CANCEL_OPTION);
+		this.confirma = JOptionPane.showConfirmDialog(null, "Deseja continuar com esta configuração?\n\nBrowserDriver: "+this.browserDriver+"\n\nDriver: "+this.driver+"\n\nCaso seja necessário configurar novamente, delete a pasta 'config'.", "Confimação das Configurações Selenium", JOptionPane.OK_CANCEL_OPTION);
 		
 		if (this.confirma == JOptionPane.CANCEL_OPTION) {
 
 			JOptionPane.showMessageDialog(null, "O Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+			
+		}else {
+			
+			SQLite gravarConfiguracao = new SQLite(this.browserDriver, this.driver);
 			
 		}
 

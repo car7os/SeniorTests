@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import log.LogAtividades;
 
 public class SQLite {
@@ -16,38 +18,42 @@ public class SQLite {
 	private static String arquivo;
 	private static String pasta;
 	private static Connection conexao;
+	
+	private static String browserDriver;
+	private static String driver;
 
+	public SQLite() {
+		
+	}
 	
 	
-	
-	public SQLite(){
+	public SQLite(String browserDriver, String driver){
 
 
 				this.driveSQLite = "org.sqlite.JDBC";
-				this.pasta = "DataBase";
-				this.arquivo = "tests.db";
+				this.pasta = "config";
+				this.arquivo = "Driver.db";
 		
 				conexao = null;
 
 				File pastas;
 		
 				File arquivo;
-				LogAtividades log = new LogAtividades();
-
+				File isArquivo;
 		
 				Boolean flag = false;
+
+				arquivo = new File(this.pasta+"\\"+this.arquivo);
+				isArquivo = new File(this.pasta+"\\"+this.arquivo);
 			
 				try {
 			
 				pastas = new File(this.pasta);
 				pastas.mkdirs();
 		
-				arquivo = new File(this.pasta+"\\"+this.arquivo);
 		
 				if (arquivo.exists()) {
 					flag = true;
-				}else {
-					log.setAtividades("SQLite", "Notificacao", "Banco de Dados nao existe, Primeiro uso do Sistema, um banco de dados sera criado.");
 				}
 		
 					
@@ -56,7 +62,7 @@ public class SQLite {
 			
 			
 		}catch(Exception e) {
-			log.setAtividades("SQLite", "ERRO", e.getMessage());
+			JOptionPane.showMessageDialog(null, e,"ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 
 
@@ -76,14 +82,34 @@ public class SQLite {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			log.setAtividades("SQLite", "Resultado do Query", e.getMessage());
+			System.out.println(e);
+			//JOptionPane.showMessageDialog(null, e,"ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		}
 		
+		if (isArquivo.exists()) {
+
+			JOptionPane.showMessageDialog(null, "Sistema Configurado com Sucesso!!!","Configuração do Sistema", JOptionPane.INFORMATION_MESSAGE);
+			
+		}
 
 		
 		
+	}
+	
+	public boolean getConfig () {
+		
+
+		this.pasta = "config";
+		this.arquivo = "Driver.db";
+
+		File isArquivo;
+
+		isArquivo = new File(this.pasta+"\\"+this.arquivo);
+
+		
+		return(isArquivo.exists());
 	}
 	
 
