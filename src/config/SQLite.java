@@ -21,13 +21,14 @@ public class SQLite {
 	
 	private static String browserDriver;
 	private static String driver;
+	private static String ambienteTrabalho;
 
 	public SQLite() {
 		
 	}
 	
 	
-	public SQLite(String browserDriver, String driver){
+	public SQLite(String browserDriver, String driver, String ambienteTrabalho){
 
 
 				this.driveSQLite = "org.sqlite.JDBC";
