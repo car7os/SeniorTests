@@ -1,119 +1,57 @@
 package config;
 
-import java.io.File;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import log.LogAtividades;
 
 public class Selenium {
 	
-	private static String drive;
-	private static WebDriver driver; 
+	private static String browserDriver;
+	private static String driver;
+	private static int confirma;
 	
-	private static String baseURL;
 	
-	private static WebElement areaTexto;
-	
-	public void abrirNavegador() {
-		getDrive();
+	public Selenium() {
 		
-		System.setProperty("webdriver.chrome.driver", drive);
-
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		
-	}
-	
-	public void getDrive() {
-		
-		String chromeDriver = "chromedriver.exe";
-		
-		File arquivo = new File(chromeDriver);
-		
-		if(arquivo.exists()) {
-			
-			this.drive = chromeDriver;
-			
-		}else {
+		this.browserDriver = null;
+		this.driver = null;
 		
 		
-		
-		JOptionPane.showMessageDialog(null, "É necessario que selecione o ChromeDriver do Selenium", "Configuração do Selenium", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, "O Selenium não está configurado!\nÉ necessario que selecione o BrowserDriver do Selenium e configure o Driver.", "Configuração do Selenium", JOptionPane.WARNING_MESSAGE);
 		
 		JFileChooser selecionarArquivo = new JFileChooser();
-				
 		int Selecionado = selecionarArquivo.showOpenDialog(null);
 		
 		if (Selecionado == JFileChooser.APPROVE_OPTION) {
-			this.drive = selecionarArquivo.getSelectedFile().getAbsolutePath();
+			
+			this.browserDriver = selecionarArquivo.getSelectedFile().getAbsolutePath();
+		
 		}else {
 			
-			JOptionPane.showMessageDialog(null, "O ChromeDriver do Selenium nao foi selecionado", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O BrowserDriver do Selenium nao foi selecionado!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 		
-		}
-	}
-	
-	public void abrirURL(String url) {
 		
-		this.baseURL = url;
-		driver.get(this.baseURL);
-	}
-	
-	public void inserirTexto(String campo, String valorCampo, String texto) {
-		areaTexto = driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']"));
-		areaTexto.sendKeys(texto);
-	}
-	
-	
-	public void clicarLink(String texto) {
-		driver.findElement(By.partialLinkText(texto)).click();
-	}
-	
-	public void inserirTextoComSubmit(String campo, String valorCampo, String texto) {
-		areaTexto = driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']"));
-		areaTexto.sendKeys(texto);
-		areaTexto.submit();
-	}
-	
-	public void apagarCampoTexto(String campo, String valorCampo) {
-		areaTexto = driver.findElement(By.xpath("//*[@"+campo+"='"+valorCampo+"']"));
-		areaTexto.clear();
-	}
-	
-	public void fecharAbaAtual() {
-		driver.switchTo().window(driver.getWindowHandle());
-		driver.close();
-	}
-	
-	public void fecharTodasAbas() {
-		driver.quit();
-	}
-	
-	public void fecharProcesso(String processo){
-	
-		try {
-			for(int i = 0; i>= 100; i++) {
+		driver = JOptionPane.showInputDialog("Insira o Driver (ex: webdriver.chrome.driver)");
+		
+		if ( (driver == null) || (driver.length() < 15) ) {
 
-				Runtime.getRuntime().exec("taskkill /f /im "+processo+" /t");
-			}
-		}catch(Exception e) {
-			
-			LogAtividades log = new LogAtividades();
-			
-			log.setAtividades("Config Selenium","ERRO",e.getMessage());
+			JOptionPane.showMessageDialog(null, "O Driver do Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
+		
+		this.confirma = JOptionPane.showConfirmDialog(null, "BrowserDriver: "+this.browserDriver+"\n\nDriver: "+this.driver+"\n\nDeseja continuar com esta configuração? Caso seja necessário configurar novamente, delete a pasta 'config'.", "Confimação das Configurações Selenium", JOptionPane.OK_CANCEL_OPTION);
+		
+		if (this.confirma == JOptionPane.CANCEL_OPTION) {
+
+			JOptionPane.showMessageDialog(null, "O Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
+			
+		}
+
+	
 	}
-	
-
-	
-
 }
+	
+
+
