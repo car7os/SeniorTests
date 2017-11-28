@@ -1,12 +1,12 @@
 package principal;
 
-import config.Selenium;
+import config.ConfigAmbiente;
 
 public class SeniorTests {
 	
 	public static void main (String args[]) {
 		
-		Selenium site = new Selenium();
+		ConfigAmbiente site = new ConfigAmbiente();
 		
 	}
 

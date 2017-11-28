@@ -4,7 +4,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
-public class Selenium {
+public class ConfigAmbiente {
 	
 	private static String browserDriver;
 	private static String driver;
@@ -13,14 +13,13 @@ public class Selenium {
 	
 	
 	
-	public Selenium() {
+	public ConfigAmbiente() {
 		
-		SQLite config = new SQLite();
+		SalvaConfig config = new SalvaConfig();
 		
 		if (!config.getConfig()) {
 
-			//configurarSelenium();
-			configurarAmbiente();
+			configurarSelenium();
 		
 		}
 		
@@ -96,7 +95,7 @@ public class Selenium {
 			}else {
 
 
-		    	SQLite gravarConfiguracao = new SQLite(this.browserDriver, this.driver, this.ambienteTrabalho);
+		    	SalvaConfig gravarConfiguracao = new SalvaConfig(this.browserDriver, this.driver, this.ambienteTrabalho);
 			
 			}
 

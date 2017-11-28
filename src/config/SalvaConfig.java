@@ -11,29 +11,27 @@ import javax.swing.JOptionPane;
 
 import log.LogAtividades;
 
-public class SQLite {
+public class SalvaConfig {
 	
 	
-	private static String driveSQLite;
-	private static String arquivo;
-	private static String pasta;
+	private static final String driveSQLite = "org.sqlite.JDBC";
+	private static final String pasta = "config";
+	private static final String arquivo = "Driver.db";
 	private static Connection conexao;
 	
 	private static String browserDriver;
 	private static String driver;
 	private static String ambienteTrabalho;
+	
+	private static final String pastaCenarios = "Cenarios";
+	
+	
+	
+	public SalvaConfig() {
 
-	public SQLite() {
-		
 	}
-	
-	
-	public SQLite(String browserDriver, String driver, String ambienteTrabalho){
 
-
-				this.driveSQLite = "org.sqlite.JDBC";
-				this.pasta = "config";
-				this.arquivo = "Driver.db";
+	public SalvaConfig(String browserDriver, String driver, String ambienteTrabalho){
 		
 				conexao = null;
 
@@ -41,6 +39,8 @@ public class SQLite {
 		
 				File arquivo;
 				File isArquivo;
+				
+				File pCenarios;
 		
 				Boolean flag = false;
 
@@ -51,6 +51,13 @@ public class SQLite {
 			
 				pastas = new File(this.pasta);
 				pastas.mkdirs();
+				
+				pCenarios = new File(ambienteTrabalho+this.pastaCenarios);
+				if(!pCenarios.exists()) {
+				pCenarios.mkdirs();
+				}else {
+					JOptionPane.showMessageDialog(null, "Foi constatado que já possui a pasta Cenarios!\nOs arquivos serão preservados e não havrá modificações.\nOs Cenários poderão ser utilizados normalmente.", "Os Cenários Já Existem", JOptionPane.INFORMATION_MESSAGE);
+				}
 		
 		
 				if (arquivo.exists()) {
@@ -80,8 +87,11 @@ public class SQLite {
 			resultado = enviar.executeQuery("CREATE TABLE testando(int id)");
 
 			conexao.close();
+			
+			
+			
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println(e);
 			//JOptionPane.showMessageDialog(null, e,"ERRO", JOptionPane.ERROR_MESSAGE);
@@ -101,10 +111,6 @@ public class SQLite {
 	
 	public boolean getConfig () {
 		
-
-		this.pasta = "config";
-		this.arquivo = "Driver.db";
-
 		File isArquivo;
 
 		isArquivo = new File(this.pasta+"\\"+this.arquivo);
