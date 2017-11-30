@@ -4,12 +4,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
-public class ConfigAmbiente {
+class ConfigAmbiente {
 	
+	private static String nomeNavegador;
 	private static String browserDriver;
 	private static String driver;
 	private static String ambienteTrabalho;
 	private static int confirma;
+	//private static int indice;
 	
 	
 	
@@ -31,9 +33,43 @@ public class ConfigAmbiente {
 		
 		this.browserDriver = null;
 		this.driver = null;
+		this.ambienteTrabalho = null;
 		
 		
-		JOptionPane.showMessageDialog(null, "O Sistema não está configurado!\nÉ necessario que Configure o Selenium selecionando o BrowserDriver, inserindo o WebDriver do Selenium e\nselecionando o diretório para montar o Ambiente de Trabalho.", "Configuração do Sistema", JOptionPane.WARNING_MESSAGE);
+		
+		this.confirma = JOptionPane.showConfirmDialog(null, "Deseja Configurar ou Atualizar a Pasta do Ambiente de Trabalho?", "Configurações do Sistema", JOptionPane.OK_CANCEL_OPTION);
+		
+		if (this.confirma != JOptionPane.CANCEL_OPTION) {
+
+			configurarAmbiente();
+			
+		}
+
+
+		
+		
+		
+		this.confirma = JOptionPane.showConfirmDialog(null, "Deseja Cadastrar ou Atializar os Navegadores?", "Configurações do Sistema", JOptionPane.OK_CANCEL_OPTION);
+		
+		if (this.confirma == JOptionPane.CANCEL_OPTION) {
+
+			JOptionPane.showMessageDialog(null, "O Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+			
+		}
+
+		
+		
+		nomeNavegador = JOptionPane.showInputDialog("Insira o Nome do Navegador BrowserDriver Selenium:","Google Chrome");
+		
+		if ( (nomeNavegador == null) || (nomeNavegador.length() < 3) ) {
+
+			JOptionPane.showMessageDialog(null, "O WebDriver do Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
+
+		
+		//JOptionPane.showMessageDialog(null, "O Sistema não está configurado!\nÉ necessario que Configure o Selenium selecionando o BrowserDriver, inserindo o WebDriver do Selenium e\nselecionando o diretório para montar o Ambiente de Trabalho.", "Configuração do Sistema", JOptionPane.WARNING_MESSAGE);
 		
 		JFileChooser selecionarArquivo = new JFileChooser();
 		selecionarArquivo.setDialogTitle("Selecione o BrowserDriver do Selenium");
@@ -58,7 +94,7 @@ public class ConfigAmbiente {
 			System.exit(0);
 		}
 		
-		this.confirma = JOptionPane.showConfirmDialog(null, "Deseja continuar com esta configuração?\n\nBrowserDriver: "+this.browserDriver+"\n\nWebDriver: "+this.driver+"\n\nCaso seja necessário configurar novamente, delete a pasta 'config'.", "Confimação das Configurações Selenium", JOptionPane.OK_CANCEL_OPTION);
+		this.confirma = JOptionPane.showConfirmDialog(null, "Deseja continuar com esta configuração?\n\nNavegador: "+this.nomeNavegador+"\n\nBrowserDriver: "+this.browserDriver+"\n\nWebDriver: "+this.driver+"\n\nCaso seja necessário configurar novamente, delete a pasta 'config'.", "Confimação das Configurações Selenium", JOptionPane.OK_CANCEL_OPTION);
 		
 		if (this.confirma == JOptionPane.CANCEL_OPTION) {
 
@@ -67,7 +103,9 @@ public class ConfigAmbiente {
 			
 		}else {
 
-			configurarAmbiente();
+			//configurarAmbiente();
+	    	SalvaConfig gravarConfiguracao = new SalvaConfig(this.ambienteTrabalho, this.nomeNavegador, this.browserDriver, this.driver);
+
 		
 		}
 	
@@ -95,7 +133,7 @@ public class ConfigAmbiente {
 			}else {
 
 
-		    	SalvaConfig gravarConfiguracao = new SalvaConfig(this.browserDriver, this.driver, this.ambienteTrabalho);
+		    	//SalvaConfig gravarConfiguracao = new SalvaConfig(this.browserDriver, this.driver, this.ambienteTrabalho, this.indice);
 			
 			}
 
@@ -106,6 +144,7 @@ public class ConfigAmbiente {
 			System.exit(0);
 	      }
 	}
+	
 }
 	
 

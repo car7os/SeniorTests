@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import log.LogAtividades;
 
-public class SalvaConfig {
+class SalvaConfig {
 	
 	
 	private static final String driveSQLite = "org.sqlite.JDBC";
@@ -39,7 +39,9 @@ public class SalvaConfig {
 
 	}
 
-	public SalvaConfig(String browserDriver, String driver, String ambienteTrabalho){
+	public SalvaConfig(String ambienteTrabalho, String nomeNavegador, String browserDriver, String driver){
+		
+				this.ambienteTrabalho = ambienteTrabalho;
 		
 				conexao = null;
 

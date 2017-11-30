@@ -1,12 +1,13 @@
 package principal;
 
-import config.ConfigAmbiente;
+import config.Cadastrar;;
 
 public class SeniorTests {
 	
 	public static void main (String args[]) {
 		
-		ConfigAmbiente site = new ConfigAmbiente();
+		Cadastrar Configurar = new Cadastrar();
+		 
 		
 	}
 
