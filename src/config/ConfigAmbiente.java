@@ -51,12 +51,8 @@ class ConfigAmbiente {
 		
 		this.confirma = JOptionPane.showConfirmDialog(null, "Deseja Cadastrar ou Atializar os Navegadores?", "Configurações do Sistema", JOptionPane.OK_CANCEL_OPTION);
 		
-		if (this.confirma == JOptionPane.CANCEL_OPTION) {
+		if (this.confirma != JOptionPane.CANCEL_OPTION) {
 
-			JOptionPane.showMessageDialog(null, "O Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
-			
-		}
 
 		
 		
@@ -108,8 +104,10 @@ class ConfigAmbiente {
 
 		
 		}
-	
+		
 	}
+	
+}
 	
 	public void configurarAmbiente () {
 		JFileChooser chooser = new JFileChooser(); 
