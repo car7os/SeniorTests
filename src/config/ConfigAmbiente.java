@@ -63,6 +63,7 @@ class ConfigAmbiente {
 		this.confirma = JOptionPane.showConfirmDialog(null, "Deseja Cadastrar ou Atializar os Navegadores?", "Configurações do Sistema", JOptionPane.OK_CANCEL_OPTION);
 		
 		if (this.confirma != JOptionPane.CANCEL_OPTION) {
+			
 			configurarNavegadores();
 			
 	}
@@ -85,7 +86,7 @@ class ConfigAmbiente {
 			
 			if (this.confirma == JOptionPane.CANCEL_OPTION) {
 
-				JOptionPane.showMessageDialog(null, "Nao foi configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "O Ambiente de Trabalho Nao foi configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
 				
 			}else {
 
@@ -97,8 +98,7 @@ class ConfigAmbiente {
 
 	      }
 	    else {
-			JOptionPane.showMessageDialog(null, "O Ambiente de Trabalho não foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Ambiente de Trabalho", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "O Ambiente de Trabalho Nao foi configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
 	      }
 	}
 	
@@ -113,14 +113,22 @@ class ConfigAmbiente {
 			
 			this.executavelJAR = selecionarArquivo.getSelectedFile().getAbsolutePath();
 		
-		}
 		
-		this.confirma = JOptionPane.showConfirmDialog(null, "Confirma as configurações de Ambiente de Trabalho?\n\nDiretório do Ambiente de Trabalho:\n"+this.ambienteTrabalho+"\n\nCaso seja necessário configurar novamente, delete a pasta 'config'.", "Confimação das Configurações do Ambiente de Trabalho", JOptionPane.OK_CANCEL_OPTION);
+		
+		this.confirma = JOptionPane.showConfirmDialog(null, "Confirma o JAR Executavel?\n\nJAR Executavel em:\n"+this.executavelJAR+"\n\nCaso seja necessário configurar novamente, delete a pasta 'config'.", "Confimação das Configurações do Ambiente de Trabalho", JOptionPane.OK_CANCEL_OPTION);
 		
 		if (this.confirma == JOptionPane.CANCEL_OPTION) {
 
-			JOptionPane.showMessageDialog(null, "O Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Selenium", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "O JAR Executavel Não foi Configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
+			
+		}else {
+
+
+	    	//SalvaConfig gravarConfiguracao = new SalvaConfig(this.browserDriver, this.driver, this.ambienteTrabalho, this.indice);
+		
+		}
+		}else {
+			JOptionPane.showMessageDialog(null, "O JAR Executavel Não foi Configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
 			
 		}
 
@@ -136,9 +144,8 @@ class ConfigAmbiente {
 		
 		if ( (nomeNavegador == null) || (nomeNavegador.length() < 3) ) {
 
-			JOptionPane.showMessageDialog(null, "O WebDriver do Selenium nao foi configurado corretamente!\nO sistema será finalizado devido a falta de configuração.", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
-		}
+			JOptionPane.showMessageDialog(null, "O WebDriver do Selenium nao foi configurado!", "Configuração do Sistema", JOptionPane.ERROR_MESSAGE);
+		}else {
 
 		
 		//JOptionPane.showMessageDialog(null, "O Sistema não está configurado!\nÉ necessario que Configure o Selenium selecionando o BrowserDriver, inserindo o WebDriver do Selenium e\nselecionando o diretório para montar o Ambiente de Trabalho.", "Configuração do Sistema", JOptionPane.WARNING_MESSAGE);
@@ -176,11 +183,11 @@ class ConfigAmbiente {
 		}else {
 
 			//configurarAmbiente();
-	    	SalvaConfig gravarConfiguracao = new SalvaConfig(this.ambienteTrabalho, this.nomeNavegador, this.browserDriver, this.driver);
+	    	//SalvaConfig gravarConfiguracao = new SalvaConfig(this.ambienteTrabalho, this.nomeNavegador, this.browserDriver, this.driver);
 
 		
 		}
-		
+		}
 
 	}
 	
